@@ -1,15 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function App() {
   
   const [pokemonList, setPokemonList] = useState([]);
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon")
+    axios.get("https://pokeapi.co/api/v2/pokemon")
       .then(response => {
-          return response.json();
+          return response.data;
       }).then(response => {
           setPokemonList(response.results);
       }).catch(error=>{
